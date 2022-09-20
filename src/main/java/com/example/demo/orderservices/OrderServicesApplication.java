@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @SpringBootApplication
 @RestController
@@ -18,7 +19,7 @@ public class OrderServicesApplication {
     private OrderDao orderDao;
    @GetMapping
    public List<order> orderServices(){
-    return orderDao.getOrders();
+    return orderDao.getOrders().stream().sorted().collect(Collectors.toList());
     }
     public static void main(String[] args) {
         SpringApplication.run(OrderServicesApplication.class, args);
